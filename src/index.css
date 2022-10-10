@@ -1,3 +1,28 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+
+    .btn {
+        @apply bg-light-two rounded-md w-32 border-2 border-black
+        hover:bg-black hover:text-white transition-all ease-in-out duration-300 delay-75
+        text-center flex justify-center items-center;
+    }
+
+    .btn2 {
+        @apply bg-light-one rounded-md w-36 border-2 border-black
+        hover:bg-light-four hover:text-white transition-all ease-in-out duration-300 delay-75
+        text-center flex justify-center items-center;
+    }
+
+    .modal {
+        @apply fixed top-0 left-0 w-full h-full overflow-auto bg-black bg-opacity-70 flex
+        justify-center items-center z-30;
+    }
+
+    .modal-content {
+        @apply z-30 bg-light-two rounded-md opacity-100 flex flex-col justify-between
+        w-[700px] h-[550px] p-7;
+    }
+}

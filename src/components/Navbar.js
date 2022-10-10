@@ -1,25 +1,62 @@
-import React, {Component} from 'react';
+import React from 'react';
+import Button from "./Button";
+import {Link} from "react-router-dom";
+import Logo from "../images/NoteAppLogo.png"
 
-class Navbar extends Component {
-    render() {
-        return (
-            <nav className="fixed w-screen h-24 flex flex-row justify-between p-5 bg-light-one border-b-4 border-b-black">
-                <div id="logo" className="w-1/4">
-                    <p className="relative translate-x-1/2 translate-y-1/2">Logo</p>
-                </div>
-                <div id="connexion" className="w-3/4 flex flex-row space-x-9 justify-end">
-                    <button className="bg-light-two rounded-md w-32 border-2 border-black hover:bg-black hover:text-white
-                                        transition-all ease-in-out duration-300 delay-75">
-                        Login
-                    </button>
-                    <button className="bg-light-two rounded-md w-32 border-2 border-black hover:bg-black hover:text-white
-                                        transition-all ease-in-out duration-300 delay-75">
-                        Register
-                    </button>
-                </div>
-            </nav>
-        );
+function Navbar(props) {
+
+    function popUp(event, id) {
+        event.stopImmediatePropagation();
+        const modal = document.querySelector(id);
+        if (modal)
+        {
+            modal.classList.remove("hidden");
+        }
     }
+
+    window.addEventListener("click", e => {
+
+        if (e.target.id === "Login")
+        {
+            popUp(e, "#login-modal");
+        }
+        else if (e.target.id === "Register")
+        {
+            popUp(e, "#register-modal");
+        }
+        else if (e.target.classList.contains("modal"))
+        {
+            e.target.classList.add("hidden")
+        }
+
+    })
+
+    return (
+        <nav className="fixed w-screen h-24 flex flex-row justify-between p-5 bg-light-one border-b-4 border-b-black">
+            <div id="logo" className="w-1/4">
+                <img className="-translate-y-5 w-20 h-20" src={Logo} alt="logo"/>
+            </div>
+            <div id="connexion" className="w-3/4 flex flex-row space-x-9 justify-end">
+                {
+                    props.userState
+                    ?
+                        <>
+                            <Button btnId="Logout" name="Logout" daAction={props.logoutEvent}/>
+                            <Link to="/home" className="btn">Home</Link>
+                        </>
+                    :
+                    (
+                        <>
+                            <Button btnId="Login" name="Login"/>
+                            <Button btnId="Register" name="Register"/>
+                        </>
+                    )
+                }
+
+
+            </div>
+        </nav>
+    );
 }
 
 export default Navbar;
