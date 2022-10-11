@@ -84,7 +84,7 @@ function App() {
               isLoading ?
               <Loader/>
               :
-              <div className="h-screen">
+              <div className="h-screen overflow-x-hidden">
                   <Navbar logoutEvent={logout} userState={isConnected}/>
                   <RegistrationModal onRegister={register}/>
                   <LoginModal onLogin={login}/>

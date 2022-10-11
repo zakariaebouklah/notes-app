@@ -7,13 +7,24 @@
     .btn {
         @apply bg-light-two rounded-md w-32 border-2 border-black
         hover:bg-black hover:text-white transition-all ease-in-out duration-300 delay-75
-        text-center flex justify-center items-center;
+        text-center flex justify-center items-center shadow-3xl;
     }
 
     .btn2 {
         @apply bg-light-one rounded-md w-36 border-2 border-black
         hover:bg-light-four hover:text-white transition-all ease-in-out duration-300 delay-75
         text-center flex justify-center items-center;
+    }
+
+    .btn3 {
+        @apply bg-dark-one text-white rounded-lg w-36 border-2 border-black
+        hover:bg-light-two hover:text-black transition-all ease-in-out duration-300 delay-75
+        text-center flex justify-center items-center shadow-3xl;
+    }
+
+    .container {
+        @apply bg-light-two rounded-md p-3 w-[250px] h-[250px]
+        flex flex-col justify-center space-y-5 hover:-translate-y-2 transition-all duration-300 delay-75 ease-in-out;
     }
 
     .modal {
@@ -24,5 +35,18 @@
     .modal-content {
         @apply z-30 bg-light-two rounded-md opacity-100 flex flex-col justify-between
         w-[700px] h-[550px] p-7;
+    }
+
+    .title {
+        @apply italic text-center font-semibold;
+    }
+
+    .body {
+        @apply truncate text-center font-bold;
+    }
+
+    .input {
+        @apply p-2.5 focus:outline-none shadow-inner rounded-xl
+        focus:bg-black/25 focus:text-black w-full focus:placeholder-black/75;
     }
 }

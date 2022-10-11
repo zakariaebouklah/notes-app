@@ -15,14 +15,14 @@ const firebaseConfig = {
     messagingSenderId:  process.env.REACT_APP_MESSAGING_ID,
     appId: process.env.REACT_APP_APP_ID
 };
-console.log(process.env)
-console.log(firebaseConfig);
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// db.settings({timestampsInSnapshots: true});
+const Settings = {timestampsInSnapshots: true};
+
+db._setSettings(Settings);
 
 export {app, auth, db};

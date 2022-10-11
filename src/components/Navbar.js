@@ -32,11 +32,11 @@ function Navbar(props) {
     })
 
     return (
-        <nav className="fixed w-screen h-24 flex flex-row justify-between p-5 bg-light-one border-b-4 border-b-black">
+        <nav className="fixed z-50 w-screen h-24 flex flex-row justify-between p-5 bg-light-one border-b-4 border-b-black">
             <div id="logo" className="w-1/4">
                 <img className="-translate-y-5 w-20 h-20" src={Logo} alt="logo"/>
             </div>
-            <div id="connexion" className="w-3/4 flex flex-row space-x-9 justify-end">
+            <div id="connexion" className="w-3/4 flex flex-row space-x-9 justify-end px-5">
                 {
                     props.userState
                     ?
