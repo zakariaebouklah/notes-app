@@ -3,11 +3,13 @@ import {auth, db} from '../../firebase';
 import {collection, getDocs, orderBy, query, where} from 'firebase/firestore';
 import ShowNoteModal from "../Modals/ShowNoteModal";
 import NotePreview from "./NotePreview";
+import ConfirmationDeleteModal from "../Modals/ConfirmationDeleteModal";
 
 function MyNotes(props) {
 
     const [content, setContent] = useState([]);
     const [actualNote, setActualNote] = useState({title: "", body: ""});
+    const [noteID, setNoteID] = useState("");
 
     const colRef = collection(db, 'note');
 
@@ -24,6 +26,7 @@ function MyNotes(props) {
                      */
 
                     setContent(prevState => [...prevState, doc.data()]);
+
                 })
 
             })
@@ -35,13 +38,18 @@ function MyNotes(props) {
      * returned Elements by adding a uniq key prop for each one.
      */
     const myContent = content.map(
-        (note, index) => <NotePreview key={index} noteContent={note} onAccessClicked={setActualNote}/>
+        (note, index) => <NotePreview
+                                key={index}
+                                noteContent={note}
+                                onAccessClicked={setActualNote}
+                                onDeleteClicked={setNoteID}/>
     );
 
     return (
         <div id="notes-container"
              className="relative top-24 grid grid-cols-3 gap-3 gap-y-16 m-7 p-14 place-items-center">
             <ShowNoteModal noteInDetails={actualNote}/>
+            <ConfirmationDeleteModal doc={noteID}/>
             {myContent}
         </div>
     );

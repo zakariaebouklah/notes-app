@@ -1,27 +1,33 @@
 import React, {useState} from 'react';
 import photo from '../../images/NoteAppLogo.png';
 import {auth, db} from "../../firebase";
-import {addDoc, collection} from "firebase/firestore";
+import {addDoc, collection, doc, setDoc} from "firebase/firestore";
 import {useNavigate} from "react-router-dom";
 
 function NewNote(props) {
 
     const navigate = useNavigate();
 
+    const uuid = require("uuid");
+
     const [title, setTitle] = useState("");
     const [body, setBody] = useState("");
     const user = auth.currentUser.uid;
 
+    let tempID = uuid.v4()
+
     const handleSubmit = e => {
         e.preventDefault();
-        const docRef = addDoc(collection(db, "note"), {
+        //idea set custom doc id using UUID
+        setDoc(doc(db, "note", tempID), {
             title: title,
             body: body,
             user: user,
-            createdAt: new Date()
-        }).then(res => console.log(res.id)).catch(err => console.log(err.message()))
+            createdAt: new Date(),
+            docID: tempID
+        }).then(res => console.log("Ok")).catch(err => console.log(err.message()))
 
-        navigate("/home");
+        navigate("/my_notes");
     }
 
     return (
