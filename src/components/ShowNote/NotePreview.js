@@ -4,6 +4,10 @@ function NotePreview(props) {
 
     const handleAccessClick = () => {
         document.querySelector("#note-check").classList.remove("hidden");
+        props.onAccessClicked({
+            title: props.noteContent.title,
+            body: props.noteContent.body
+        })
     }
 
     return (
