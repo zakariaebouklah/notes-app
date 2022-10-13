@@ -1,17 +1,17 @@
 import './index.css';
-import Navbar from "./components/Navbar";
-import RegistrationModal from "./components/RegistrationModal";
-import LoginModal from "./components/LoginModal";
+import Navbar from "./components/Regulars/Navbar";
+import RegistrationModal from "./components/Modals/RegistrationModal";
+import LoginModal from "./components/Modals/LoginModal";
 import {Route, Routes, useNavigate} from "react-router-dom";
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword,
         signOut, onAuthStateChanged} from 'firebase/auth';
 import {auth} from "./firebase";
-import Home from "./components/Home";
+import Home from "./components/Regulars/Home";
 import {useEffect, useState} from "react";
-import Loader from "./components/Loader";
+import Loader from "./components/Regulars/Loader";
 import ErrorPage from "./components/404/ErrorPage";
-import MyNotes from "./components/MyNotes";
-import NewNote from "./components/NewNote";
+import MyNotes from "./components/ShowNote/MyNotes";
+import NewNote from "./components/ComposeANote/NewNote";
 
 function App() {
 
@@ -23,7 +23,7 @@ function App() {
         onAuthStateChanged(auth, function(user) {
             let userAuth = user != null
             setIsConnected(userAuth);
-            console.log(userAuth);
+            // console.log(userAuth);
             if (isLoading === true)
             {
                 setIsLoading(false)

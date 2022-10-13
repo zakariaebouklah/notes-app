@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import photo from '../images/NoteAppLogo.png';
-import {auth, db} from "../firebase";
+import photo from '../../images/NoteAppLogo.png';
+import {auth, db} from "../../firebase";
 import {addDoc, collection} from "firebase/firestore";
 import {useNavigate} from "react-router-dom";
 
