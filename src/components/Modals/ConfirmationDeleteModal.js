@@ -8,7 +8,7 @@ function ConfirmationDeleteModal(props) {
     const navigate = useNavigate();
 
     const handleGoBack = e => {
-        // e.preventDefault();
+        e.preventDefault();
         document.querySelector("#delete-modal").classList.add("hidden");
     }
 
@@ -32,8 +32,8 @@ function ConfirmationDeleteModal(props) {
                     <button type="submit" className="bg-black rounded-md w-32 border-2 border-red-500
         hover:bg-red-500 text-red-500 hover:text-black transition-all ease-in-out duration-300 delay-75
         text-center flex justify-center items-center shadow-3xl h-12">Yes, Delete</button>
-                    <button onClick={handleGoBack} className="bg-black rounded-md w-32 border-2 border-teal-300
-        hover:bg-teal-300 text-teal-300 hover:text-black transition-all ease-in-out duration-300 delay-75
+                    <button onClick={handleGoBack} className="bg-black rounded-md w-32 border-2 border-light-one
+        hover:bg-light-one text-light-one hover:text-black transition-all ease-in-out duration-300 delay-75
         text-center flex justify-center items-center shadow-3xl h-12">Go Back</button>
                 </form>
             </div>

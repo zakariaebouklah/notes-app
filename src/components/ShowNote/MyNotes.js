@@ -4,12 +4,19 @@ import {collection, getDocs, orderBy, query, where} from 'firebase/firestore';
 import ShowNoteModal from "../Modals/ShowNoteModal";
 import NotePreview from "./NotePreview";
 import ConfirmationDeleteModal from "../Modals/ConfirmationDeleteModal";
+import Loader from "../Regulars/Loader";
+import UpdateNoteModal from "../Modals/UpdateNoteModal";
 
 function MyNotes(props) {
 
     const [content, setContent] = useState([]);
     const [actualNote, setActualNote] = useState({title: "", body: ""});
     const [noteID, setNoteID] = useState("");
+    const [isLoading, setIsLoading] = useState(true);
+    const [valuesToBeUpdated, setValuesToBeUpdated] = useState({
+        title: "", body: "", updatedAt: null
+    })
+    const [theDoc, setTheDoc] = useState("");
 
     const colRef = collection(db, 'note');
 
@@ -27,6 +34,11 @@ function MyNotes(props) {
 
                     setContent(prevState => [...prevState, doc.data()]);
 
+                    if (isLoading === true)
+                    {
+                        setIsLoading(false);
+                    }
+
                 })
 
             })
@@ -42,16 +54,22 @@ function MyNotes(props) {
                                 key={index}
                                 noteContent={note}
                                 onAccessClicked={setActualNote}
-                                onDeleteClicked={setNoteID}/>
+                                onDeleteClicked={setNoteID}
+                                onEditClicked={setValuesToBeUpdated}
+                                onEditClicked2={setTheDoc}/>
     );
 
     return (
-        <div id="notes-container"
-             className="relative top-24 grid grid-cols-3 gap-3 gap-y-16 m-7 p-14 place-items-center">
-            <ShowNoteModal noteInDetails={actualNote}/>
-            <ConfirmationDeleteModal doc={noteID}/>
-            {myContent}
-        </div>
+            isLoading ?
+            <Loader/>
+            :
+            <div id="notes-container"
+                 className="relative top-24 grid grid-cols-3 gap-3 gap-y-16 m-7 p-14 place-items-center">
+                <ShowNoteModal noteInDetails={actualNote}/>
+                <ConfirmationDeleteModal doc={noteID}/>
+                <UpdateNoteModal ID={theDoc} values={valuesToBeUpdated}/>
+                {myContent}
+            </div>
     );
 }
 

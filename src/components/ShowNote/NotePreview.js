@@ -1,4 +1,7 @@
 import React from 'react';
+import {RiQuillPenLine} from "react-icons/ri";
+import {BsTrashFill} from "react-icons/bs";
+import {GiNotebook} from "react-icons/gi";
 
 function NotePreview(props) {
 
@@ -11,21 +14,41 @@ function NotePreview(props) {
     }
 
     const handleDeleteClick = () => {
-        // console.log(props.noteContent)
-
         document.querySelector("#delete-modal").classList.remove("hidden");
         props.onDeleteClicked(props.noteContent.docID);
+    }
+
+    const handleEditClick = () => {
+        document.querySelector("#update-modal").classList.remove("hidden");
+        props.onEditClicked({
+            title: props.noteContent.title,
+            body: props.noteContent.body,
+            updatedAt: props.noteContent.updatedAt
+        })
+        props.onEditClicked2(props.noteContent.docID)
     }
 
     return (
         <div className="container">
             <p className="title">{props.noteContent.title}</p>
+            <hr/>
             <p className="body">{props.noteContent.body}</p>
-            <p className="date">{new Date(props.noteContent.createdAt.seconds * 1000).toLocaleString()}</p>
-            <div className="controlsContainer">
-                <button className="lilButton edit">&#9998;</button>
-                <button onClick={handleDeleteClick} className="lilButton del">&#10006;</button>
-                <button onClick={handleAccessClick} className="lilButton access">&#9781;</button>
+            <hr/>
+            {
+                props.noteContent.updatedAt.toLocaleString() === props.noteContent.createdAt.toLocaleString() ?
+                    <div className="h-12">
+                        <p className="date">Created at: {new Date(props.noteContent.createdAt.seconds * 1000).toLocaleString()}</p>
+                    </div>
+                    :
+                    <div className="h-12">
+                        <p className="date">Created at: {new Date(props.noteContent.createdAt.seconds * 1000).toLocaleString()}</p>
+                        <p className="date">Updated at: {new Date(props.noteContent.updatedAt.seconds * 1000).toLocaleString()}</p>
+                    </div>
+            }
+            <div className="controlsContainer shadow-3xl">
+                <button onClick={handleEditClick} className="lilButton edit"><RiQuillPenLine size={20}/></button>
+                <button onClick={handleDeleteClick} className="lilButton del"><BsTrashFill size={20}/></button>
+                <button onClick={handleAccessClick} className="lilButton access"><GiNotebook size={20}/></button>
             </div>
         </div>
     );

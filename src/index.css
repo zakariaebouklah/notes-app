@@ -23,7 +23,7 @@
     }
 
     .container {
-        @apply relative bg-light-two rounded-md p-3 w-[250px] h-[250px] shadow-3xl
+        @apply relative bg-light-two rounded-md p-3 w-[350px] h-[350px] shadow-3xl
         flex flex-col justify-center space-y-5 hover:-translate-y-1 transition-all duration-300 delay-75 ease-in-out;
     }
 
@@ -77,5 +77,15 @@
     .input {
         @apply p-2.5 focus:outline-none shadow-inner rounded-xl
         focus:bg-black/25 focus:text-black w-full focus:placeholder-black/75;
+    }
+
+    .input-edit {
+        @apply p-2.5 focus:outline-none shadow-inner rounded-xl
+        focus:bg-white/75 focus:text-black w-full focus:placeholder-black/75;
+    }
+
+    .form {
+        @apply flex flex-col space-y-3 bg-gray-700 items-start p-7 relative
+        shadow-3xl rounded-lg;
     }
 }

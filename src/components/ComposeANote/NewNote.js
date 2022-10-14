@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import photo from '../../images/NoteAppLogo.png';
 import {auth, db} from "../../firebase";
-import {addDoc, collection, doc, setDoc} from "firebase/firestore";
+import {doc, setDoc} from "firebase/firestore";
 import {useNavigate} from "react-router-dom";
+import tape from "../../icons/wholeTape.png";
 
 function NewNote(props) {
 
@@ -14,16 +15,18 @@ function NewNote(props) {
     const [body, setBody] = useState("");
     const user = auth.currentUser.uid;
 
-    let tempID = uuid.v4()
+    let tempID = uuid.v4();
+    let date = new Date();
 
     const handleSubmit = e => {
         e.preventDefault();
-        //idea set custom doc id using UUID
+        //idea is to set custom doc id using UUID
         setDoc(doc(db, "note", tempID), {
             title: title,
             body: body,
             user: user,
-            createdAt: new Date(),
+            createdAt: date,
+            updatedAt: date,
             docID: tempID
         }).then(res => console.log("Ok")).catch(err => console.log(err.message()))
 
@@ -37,6 +40,7 @@ function NewNote(props) {
                 <textarea required={true} id="body" onChange={e => setBody(e.target.value)} placeholder="Write down your ideas..." className="input h-80"/>
                 <button type="submit" className="btn3 h-10">Submit</button>
                 <img src={photo} alt="photo" className="w-16 h-16 absolute -top-16 -left-5 -rotate-12"/>
+                <img src={tape} alt="photo" className="w-16 h-16 absolute -bottom-5 -right-5 -rotate-12"/>
             </form>
         </div>
     );
