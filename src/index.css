@@ -88,4 +88,16 @@
         @apply flex flex-col space-y-3 bg-gray-700 items-start p-7 relative
         shadow-3xl rounded-lg;
     }
+
+    .toggle-bay {
+        @apply w-[90px] h-9 px-2 place-self-center rounded-3xl bg-dark-one;
+    }
+
+    .slide {
+        @apply right-0 transition-all delay-75 ease-in-out duration-500;
+    }
+
+    .go-back {
+        @apply left-0 transition-all delay-75 ease-in-out duration-500;
+    }
 }

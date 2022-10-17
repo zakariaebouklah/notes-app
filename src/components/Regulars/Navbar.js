@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Button from "./Button";
 import {Link} from "react-router-dom";
-import Logo from "../../images/NoteAppLogo.png"
+import Logo from "../../images/NoteAppLogo.png";
+import ThemeSwitcher from "./ThemeSwitcher";
 
 function Navbar(props) {
 
@@ -26,13 +27,12 @@ function Navbar(props) {
         }
         else if (e.target.classList.contains("modal"))
         {
-            e.target.classList.add("hidden")
+            e.target.classList.add("hidden");
         }
-
     })
 
     return (
-        <nav className="fixed z-30 w-screen h-24 flex flex-row justify-between p-5 bg-light-one border-b-4 border-b-black">
+        <nav className="fixed z-30 w-screen h-24 flex flex-row justify-between p-5 dark:bg-dark-two bg-light-one border-b-4 border-b-black">
             <div id="logo" className="w-1/4">
                 <img className="-translate-y-5 w-20 h-20" src={Logo} alt="logo"/>
             </div>
@@ -52,9 +52,8 @@ function Navbar(props) {
                         </>
                     )
                 }
-
-
             </div>
+            <ThemeSwitcher/>
         </nav>
     );
 }
