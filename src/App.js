@@ -13,10 +13,15 @@ import ErrorPage from "./components/404/ErrorPage";
 import MyNotes from "./components/ShowNote/MyNotes";
 import NewNote from "./components/ComposeANote/NewNote";
 
+import BackGd from './images/BckGdd.png';
+
 function App() {
+
+    const text = "We're Sure You've got something to write today... 🔥🚀 Go Ahead!!!";
 
     const [isConnected, setIsConnected] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
+    const [txt, setTxt] = useState("");
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -29,7 +34,18 @@ function App() {
                 setIsLoading(false)
             }
         });
+
     }, [])
+
+    //Auto-Type Animation
+
+    useEffect(() => {
+        const timeoutID = setTimeout(() => {
+            setTxt(text.slice(0, txt.length + 1))
+        }, 100)
+        return () => clearInterval(timeoutID);
+    }, [txt]);
+
 
     function login(event, email, password) {
         event.preventDefault();
@@ -84,19 +100,25 @@ function App() {
               isLoading ?
               <Loader/>
               :
-              <div className="h-screen overflow-x-hidden">
+              <div className="relative h-screen overflow-y-scroll bg-orange-100 dark:bg-dark-one">
                   <Navbar logoutEvent={logout} userState={isConnected}/>
                   <RegistrationModal onRegister={register}/>
                   <LoginModal onLogin={login}/>
                   {
-                      isConnected
-                      &&
+                      isConnected ?
                       <Routes>
                           <Route path="/home" exact element={<Home/>}/>
                           <Route path="/my_notes" element={<MyNotes/>}/>
                           <Route path="/new_note" element={<NewNote/>}/>
                           <Route path="*" element={<ErrorPage/>}/>
                       </Routes>
+                      :
+                          <div className="relative text-center">
+                              <img src={BackGd} alt="stPage" className="mt-16"/>
+                              <div className="absolute w-72 h-36 left-1/2 top-1/2 -mt-20 -ml-28 font-bold">
+                                  <p id="text-auto-typed" className="text-3xl">{txt} <span className="anime">&#119078;</span></p>
+                              </div>
+                          </div>
                   }
               </div>
           }

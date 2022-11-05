@@ -64,7 +64,8 @@ function MyNotes(props) {
             <Loader/>
             :
             <div id="notes-container"
-                 className="relative top-24 grid grid-cols-3 gap-3 gap-y-16 m-7 p-14 place-items-center">
+                 className="relative dark:bg-dark-one grid grid-cols-3 gap-3 gap-y-16 p-14
+                            place-items-center top-24 h-full">
                 <ShowNoteModal noteInDetails={actualNote}/>
                 <ConfirmationDeleteModal doc={noteID}/>
                 <UpdateNoteModal ID={theDoc} values={valuesToBeUpdated}/>

@@ -42,15 +42,15 @@ function ThemeSwitcher(props) {
 
     return (
         <div className="w-11 h-11 rounded-full bg-white hover:bg-dark-one border-2 border-black
-                        place-self-center shadow-inner shadow-3xl flex items-center justify-center
+                        place-self-center shadow-inLight flex items-center justify-center
                         transition-all ease-in-out duration-300 delay-75">
             <button id="switcher" onClick={handleClick}>
                 {
                     isDark
                         ?
-                        <img src={darkIcon} alt="dark" className="w-7 h-7"/>
+                        <img src={lightIcon} alt="dark" className="w-7 h-7"/>
                         :
-                        <img src={lightIcon} alt="light" className="w-7 h-7"/>
+                        <img src={darkIcon} alt="light" className="w-7 h-7"/>
                 }
             </button>
         </div>

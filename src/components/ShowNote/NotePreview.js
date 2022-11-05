@@ -31,18 +31,16 @@ function NotePreview(props) {
     return (
         <div className="container">
             <p className="title">{props.noteContent.title}</p>
-            <hr/>
             <p className="body">{props.noteContent.body}</p>
-            <hr/>
             {
                 props.noteContent.updatedAt.toLocaleString() === props.noteContent.createdAt.toLocaleString() ?
                     <div className="h-12">
-                        <p className="date">Created at: {new Date(props.noteContent.createdAt.seconds * 1000).toLocaleString()}</p>
+                        <p className="date"><span className="text-black text-opacity-25">Created at:</span> {new Date(props.noteContent.createdAt.seconds * 1000).toLocaleString()}</p>
                     </div>
                     :
                     <div className="h-12">
-                        <p className="date">Created at: {new Date(props.noteContent.createdAt.seconds * 1000).toLocaleString()}</p>
-                        <p className="date">Updated at: {new Date(props.noteContent.updatedAt.seconds * 1000).toLocaleString()}</p>
+                        <p className="date"><span className="text-black text-opacity-25">Created at:</span> {new Date(props.noteContent.createdAt.seconds * 1000).toLocaleString()}</p>
+                        <p className="date"><span className="text-black text-opacity-25">Updated at:</span> {new Date(props.noteContent.updatedAt.seconds * 1000).toLocaleString()}</p>
                     </div>
             }
             <div className="controlsContainer shadow-3xl">
