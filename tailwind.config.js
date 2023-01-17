@@ -11,6 +11,9 @@ module.exports = {
         'inDark': '2px -3px 0px rgb(255 255 255 / 0.7)',
         'inLight': '2px -3px 0px rgb(0 0 0 / 0.7)'
       },
+      fontFamily: {
+        'script': ['Petit Formal Script', 'cursive']
+      },
       colors: {
         //light-mode
         'light-one': "#FFB931",

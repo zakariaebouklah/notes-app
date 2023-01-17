@@ -9,6 +9,8 @@ import UpdateNoteModal from "../Modals/UpdateNoteModal";
 
 function MyNotes(props) {
 
+    const [isEmpty, setIsEmpty] = useState(false);
+    const [response, setResponse] = useState("");
     const [content, setContent] = useState([]);
     const [actualNote, setActualNote] = useState({title: "", body: ""});
     const [noteID, setNoteID] = useState("");
@@ -25,6 +27,13 @@ function MyNotes(props) {
     useEffect(() => {
         getDocs(q)
             .then(snap => {
+
+                if(snap.docs.length === 0) {
+                    setIsLoading(false);
+                    setIsEmpty(true);
+                    console.log("nothing here")
+                    setResponse(<h1 className="absolute m-auto text-center text-7xl dark:text-white">You don't have any notes yet... 😴</h1>)
+                }
 
                 snap.docs.forEach(doc => {
 
@@ -69,7 +78,7 @@ function MyNotes(props) {
                 <ShowNoteModal noteInDetails={actualNote}/>
                 <ConfirmationDeleteModal doc={noteID}/>
                 <UpdateNoteModal ID={theDoc} values={valuesToBeUpdated}/>
-                {myContent}
+                {isEmpty === false ? myContent : response}
             </div>
     );
 }

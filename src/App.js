@@ -116,7 +116,7 @@ function App() {
                           <div className="relative text-center">
                               <img src={BackGd} alt="stPage" className="mt-16"/>
                               <div className="absolute w-72 h-36 left-1/2 top-1/2 -mt-20 -ml-28 font-bold">
-                                  <p id="text-auto-typed" className="text-3xl">{txt} <span className="anime">&#119078;</span></p>
+                                  <p id="text-auto-typed" className="text-3xl font-script">{txt} <span className="anime">&#119078;</span></p>
                               </div>
                           </div>
                   }
